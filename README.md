@@ -1,4 +1,4 @@
-# Docker Exmaple
+# Docker Example
 
 This is an example of how to create a simple development and production environment using docker. This was created on the back on the last FISI code meetup in Plymouth UK.
 
