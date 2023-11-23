@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      # the context defines the location "root" used in when referencing the location filesystem the the dockerfile
+      context: .
+      # relative to the above context, where is the dockerfile used to build this service
+      dockerfile: docker/dev/nginx/Dockerfile
+    # We map the host port 8000 to port 80 in the container 
+    ports:
+      - 8000:80
+    # the volumes act a symlinks between you local system and the container,
+    # mapping the <local-source>:<container-dist>
+    # when you make change in these volumes, it should reflect in the container near immediately.
+    volumes:
+      - ./src/php:/var/www/html
+    depends_on:
+      - php 
+  php:
+    build:
+      # the context defines the location "root" used in when referencing the location filesystem the the dockerfile
+      context: .
+      # relative to the above context, where is the dockerfile used to build this service
+      dockerfile: docker/dev/php/Dockerfile
+    # the volumes act a symlinks between you local system and the container,
+    # mapping the <local-source>:<container-dist>
+    # when you make change in these volumes, it should reflect in the container near immediately.
+    volumes:
+      - ./src/php:/var/www/html
+  go:
+    build:
+      # the context defines the location "root" used in when referencing the location filesystem the the dockerfile
+      context: .
+      # relative to the above context, where is the dockerfile used to build this service
+      dockerfile: docker/dev/go/Dockerfile
+    # the volumes act a symlinks between you local system and the container,
+    # mapping the <local-source>:<container-dist>
+    # when you make change in these volumes, it should reflect in the container near immediately.
+    volumes:
+      - ./src/go:/go-app

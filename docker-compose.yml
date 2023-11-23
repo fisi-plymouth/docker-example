@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/production/nginx/Dockerfile
+  php:
+    build:
+      context: .
+      dockerfile: docker/production/php/Dockerfile
+  go:
+    build:
+      context: .
+      dockerfile: docker/production/go/Dockerfile
